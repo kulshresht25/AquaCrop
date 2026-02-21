@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AquaCrop Smart Irrigation</title>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+  <!-- Charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h2 id="appTitle">🌱 AquaCrop Smart Irrigation</h2>
+
+  <div class="header-right">
+    <select onchange="selectFarm(this.value)">
+      <option value="user_001">Farm A</option>
+      <option value="user_002">Farm B</option>
+    </select>
+
+    <span class="lang-switch">
+      <button onclick="setLanguage('en')">EN</button>
+      <button onclick="setLanguage('hi')">हिंदी</button>
+      <button onclick="setLanguage('mr')">मराठी</button>
+    </span>
+  </div>
+</div>
+
+<!-- MAIN GRID -->
+<div class="grid">
+
+  <!-- CONFIG PANEL -->
+  <div class="panel">
+    <h3 id="cfgTitle">⚙ Farm Configuration</h3>
+
+    <label id="lblCrop">Crop Type</label>
+    <select id="crop">
+      <option value="Wheat">Wheat</option>
+      <option value="Rice">Rice</option>
+      <option value="Maize">Maize</option>
+      <option value="Sugarcane">Sugarcane</option>
+      <option value="Cotton">Cotton</option>
+      <option value="Potato">Potato</option>
+    </select>
+
+    <label id="lblgrow">Crop Growth Stage</label>
+    <select id="growth_stage">
+      <option value="Sowing">Sowing</option>
+      <option value="Vegetative">Vegetative</option>
+      <option value="Flowering">Flowering</option>
+      <option value="Harvest">Harvest</option>
+    </select>
+
+    <label id="lblSoil">Soil Type</label>
+    <select id="soil">
+      <option value="Sandy">Sandy</option>
+      <option value="Loamy">Loamy</option>
+      <option value="Clay">Clay</option>
+      <option value="Silty">Silty</option>
+    </select>
+
+    <label id="lblRegion">Region</label>
+    <select id="region">
+      <option value="Central">Central</option>
+      <option value="North">North</option>
+      <option value="South">South</option>
+      <option value="East">East</option>
+      <option value="West">West</option>
+    </select>
+
+    <label id="lblSeason">Season</label>
+    <select id="season">
+      <option value="Rabi">Rabi</option>
+      <option value="Kharif">Kharif</option>
+      <option value="Zaid">Zaid</option>
+    </select>
+
+    <label id="lblArea">Field Area (hectare)</label>
+    <input type="number" id="field_area" value="1" step="0.1">
+
+    <label id="lblWater">Water Source</label>
+    <select id="water_source">
+      <option value="Groundwater">Groundwater</option>
+      <option value="River">River</option>
+      <option value="Rainwater">Rainwater</option>
+      <option value="Reservoir">Reservoir</option>
+    </select>
+
+    <button id="saveBtn" onclick="saveConfig()">💾 Save Configuration</button>
+  </div>
+
+  <!-- SENSOR PANEL -->
+  <div class="panel">
+    <h3 id="sensorTitle">📟 Live Sensor Data</h3>
+
+    <p><span id="txtTemp">🌡 Temperature</span><span id="temp">--</span></p>
+    <p><span id="txtSoil">🌾 Soil Moisture</span><span id="soilVal">--</span></p>
+    <p><span id="txtLight">☀ Light</span><span id="light">--</span></p>
+    <p><span id="txtFlow">🚰 Flow Rate</span><span id="flow">--</span></p>
+    <p><span id="txtPump">🔌 Pump</span><span id="pump">--</span></p>
+
+    <div class="btns">
+      <button class="on" onclick="setPump('ON')">ON</button>
+      <button class="off" onclick="setPump('OFF')">OFF</button>
+    </div>
+
+    <h3 id="mlTitle">🤖 ML Prediction</h3>
+    <p><b id="lblIrrNeed">Irrigation Need:</b> <span id="mlLevel">--</span></p>
+    <p><b id="lblIrrType">Irrigation Type:</b> <span id="mlType">--</span></p>
+  </div>
+
+  <!-- ANALYTICS PANEL -->
+  <div class="panel">
+    <h3 id="anaTitle">📊 Data Analysis</h3>
+    <canvas id="flowChart"></canvas>
+    <canvas id="soilChart"></canvas>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

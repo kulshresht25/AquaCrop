@@ -1,0 +1,211 @@
+/* ========== ROOT THEME ========== */
+:root {
+  --green: #2e7d32;
+  --green-light: #66bb6a;
+  --blue: #0288d1;
+  --blue-light: #4fc3f7;
+  --bg: #f4f9f6;
+  --card: #ffffff;
+  --text: #1f2933;
+}
+
+/* ========== RESET ========== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #e8f5e9, #e3f2fd);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ========== HEADER ========== */
+.header {
+  height: 64px;
+  background: linear-gradient(90deg, var(--green), var(--blue));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+}
+
+.header h2 {
+  font-size: 18px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ========== LANGUAGE & FARM SELECT ========== */
+.header select,
+.lang-switch button {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lang-switch button:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+/* ========== GRID LAYOUT ========== */
+.grid {
+  display: grid;
+  gap: 14px;
+  padding: 14px;
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr 1.3fr;
+    height: calc(100vh - 64px);
+  }
+}
+
+/* Tablet */
+@media (min-width: 700px) and (max-width: 1023px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Mobile */
+@media (max-width: 699px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========== PANELS (GLASS CARDS) ========== */
+.panel {
+  background: rgba(255,255,255,0.9);
+  border-radius: 18px;
+  padding: 16px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease;
+}
+
+.panel:hover {
+  transform: translateY(-3px);
+}
+
+.panel h3 {
+  font-size: 15px;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid rgba(0,0,0,0.08);
+  background: linear-gradient(90deg, var(--green), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ========== FORMS ========== */
+label {
+  font-size: 12px;
+  margin-top: 10px;
+  color: #455a64;
+}
+
+select,
+input {
+  padding: 9px;
+  margin-top: 5px;
+  border-radius: 10px;
+  border: 1px solid #cfd8dc;
+  background: #f8fafc;
+}
+
+select:focus,
+input:focus {
+  outline: none;
+  border-color: var(--blue);
+}
+
+/* ========== BUTTONS ========== */
+button {
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#saveBtn {
+  background: linear-gradient(90deg, var(--green), var(--blue));
+  color: white;
+  border: none;
+}
+
+#saveBtn:hover {
+  opacity: 0.9;
+}
+
+.btns {
+  display: flex;
+  gap: 10px;
+}
+
+.on {
+  background: linear-gradient(135deg, #43a047, #66bb6a);
+  color: white;
+  border: none;
+}
+
+.off {
+  background: linear-gradient(135deg, #e53935, #ef5350);
+  color: white;
+  border: none;
+}
+
+/* ========== SENSOR CARDS ========== */
+.panel p {
+  background: linear-gradient(135deg, #e3f2fd, #e8f5e9);
+  padding: 8px 12px;
+  border-radius: 12px;
+  margin: 6px 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+/* ========== CHARTS ========== */
+canvas {
+  width: 100% !important;
+  height: 42% !important;
+  margin-top: 10px;
+}
+
+/* ========== MOBILE OPTIMIZATION ========== */
+@media (max-width: 699px) {
+  .header h2 {
+    font-size: 15px;
+  }
+
+  canvas {
+    height: 220px !important;
+  }
+
+  .btns {
+    flex-direction: column;
+  }
+}
